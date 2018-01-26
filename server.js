@@ -35,11 +35,12 @@ app.post("/tables/add", function (req, res) {
     var newTable = req.body;
     if (tables.length < 5) {
         tables.push(newTable);
+        res.json({"reserved":true});
     }
     else {
         waitList.push(newTable);
+        res.json({"reserved":false});
     }
-    res.json(newTable);
 });
 
 app.post("/tables/clear", function (req, res) {
