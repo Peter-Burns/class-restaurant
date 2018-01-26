@@ -14,19 +14,48 @@
 <body>
     <div class="container">
         <div class="jumbotron">
-          <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
-          <hr>
-          <h2 class="text-center">Current Reservations and Waiting List</h2>
-          <br>
+            <h1 class="text-center">
+                <span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+            <hr>
+            <h2 class="text-center">Current Reservations and Waiting List</h2>
+            <br>
 
-          <div class="text-center">
-            <a href="/reserve"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon"></span> Make Reservation</button></a>
-            <a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
-          </div>
+            <div class="text-center">
+                <a href="/reserve">
+                    <button type="button" class="btn btn-lg btn-danger">
+                        <span class="glyphicon"></span> Make Reservation</button>
+                </a>
+                <a href="/">
+                    <button type="button" class="btn btn-lg btn-default">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </button>
+                </a>
+            </div>
         </div>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>Tables</div>
+            <div class='panel-body' id='reservedTables'></div>
+        </div>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>Waitlist</div>
+            <div class='panel-body' id='waitList'></div>
+        </div>
+    </div>
+
 </body>
 <script>
-
+    $(document).ready(function () {
+        $.get("/tables/view").done(function(data){
+            for(var i = 0; i<data.length;i++){
+                $("#reservedTables").append($(`<div class="well"><h2><span class="label label-primary">${i+1}</span>${data[i].name}</h2></div>`));
+            }
+        });
+        $.get("/waitlist/view").done(function(data){
+            for(var i = 0; i<data.length;i++){
+                $("#waitList").append($(`<div class="well"><h2><span class="label label-primary">${i+1}</span>${data[i].name}</h2></div>`));
+            }
+        });
+    });
 </script>
 
 </html>
