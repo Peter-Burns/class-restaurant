@@ -66,7 +66,8 @@
 				<div class="container">
 					<p>
 						<a href="/tables/view">API Table links</a> |
-						<a href="/waitlist/view">API wait list</a>
+						<a href="/waitlist/view">API wait list</a> |
+						<a id ="clearTables">Clear tables</a>
 					</p>
 				</div>
 			</footer>
@@ -84,6 +85,12 @@
 		$.post("tables/add", newTable).done(function(data){
 			console.log(data);
 			alert('Reservation taken!');
+		});
+	});
+	$("#clearTables").on("click", function(event){
+		event.preventDefault();
+		$.post("/tables/clear").done(function(data){
+			console.log(data);
 		});
 	});
 </script>

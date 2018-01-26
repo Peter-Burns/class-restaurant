@@ -41,18 +41,26 @@
             <div class='panel-body' id='waitList'></div>
         </div>
     </div>
-
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <a href="/tables/view">API Table links</a> |
+                <a href="/waitlist/view">API wait list</a> |
+                <a id="clearTables">Clear tables</a>
+            </p>
+        </div>
+    </footer>
 </body>
 <script>
     $(document).ready(function () {
-        $.get("/tables/view").done(function(data){
-            for(var i = 0; i<data.length;i++){
-                $("#reservedTables").append($(`<div class="well"><h2><span class="label label-primary">${i+1}</span>${data[i].name}</h2></div>`));
+        $.get("/tables/view").done(function (data) {
+            for (var i = 0; i < data.length; i++) {
+                $("#reservedTables").append($(`<div class="well"><h2><span class="label label-primary">${i + 1}</span>${data[i].name}</h2></div>`));
             }
         });
-        $.get("/waitlist/view").done(function(data){
-            for(var i = 0; i<data.length;i++){
-                $("#waitList").append($(`<div class="well"><h2><span class="label label-primary">${i+1}</span>${data[i].name}</h2></div>`));
+        $.get("/waitlist/view").done(function (data) {
+            for (var i = 0; i < data.length; i++) {
+                $("#waitList").append($(`<div class="well"><h2><span class="label label-primary">${i + 1}</span>${data[i].name}</h2></div>`));
             }
         });
     });
