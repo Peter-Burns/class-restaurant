@@ -43,9 +43,14 @@
         </footer>
 
     </div>
-
-
-
+    <script>
+        $("#clearTables").on("click", function (event) {
+            event.preventDefault();
+            $.post("/tables/clear").done(function (data) {
+                console.log(data);
+            });
+        });
+    </script>
 </body>
 
 </html>
